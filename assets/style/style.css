@@ -105,6 +105,8 @@
         h1 {
             margin: 8% 0;
             font-size: 2.2rem;
+            word-wrap: break-word;
+
         }
 
         .programsGrid {
@@ -134,9 +136,17 @@
             h3 {
                 margin: 10% 2%;
             }
-
-
         }
+
+        .bigScreen {
+            display: none;
+        }
+
+        .smallScreen {
+            display: inline-block;
+            animation: bounceIn 2s infinite;
+        }
+
     }
 
     footer {
@@ -155,7 +165,8 @@
 
 /*WELCOME PAGE */
 #start {
-    background: linear-gradient(130deg, #ff7dde, #c561ff, silver);
+    background: url(/assets/media/bg1.jpeg);
+    background-size: cover;
     min-height: 100vh;
 }
 
@@ -191,7 +202,7 @@
     #a2,
     #i3,
     #n2 {
-        font-size: 4.8rem;
+        font-size: 4rem;
 
     }
 
@@ -234,7 +245,7 @@
         font-family: "Kablammo", system-ui;
         font-weight: 500;
         padding: 1%;
-        color: #f8ddd2;
+        color: #e93131;
         transform: rotate(-5deg);
     }
 
@@ -258,18 +269,18 @@
 
     #k1 {
         font-family: "Barrio", system-ui;
-        font-weight: 500;
+        font-weight: 600;
         padding: 1%;
-        color: #b2df94;
+        color: #ff8800;
         transform: skew(5deg);
     }
 
     #s2 {
         font-family: "Kablammo", system-ui;
-        font-weight: 500;
+        font-weight: 600;
         padding: 1%;
-        color: #cba9f7e3;
-        background-color: #00d1b588;
+        color: #400192e3;
+        background-color: #23fca188;
         transform: rotate(5deg);
     }
 
@@ -343,28 +354,34 @@
 
     #n2 {
         font-family: "Rubik Distressed", system-ui;
-        font-weight: 300;
+        font-weight: 200;
         padding: 0.5% 1%;
         margin-left: 1%;
-        color: #f0f32be3;
+        color: #00b10fe3;
         transform: skew(10deg);
     }
 
     .startBtn {
         display: flex;
-        margin-top: 2%;
+        margin-top: 4%;
         justify-content: center;
-
+        
         a {
             font-family: "Bagel Fat One", system-ui;
             font-weight: 200;
             text-decoration: none;
-            font-size: 2rem;
+            font-size: 1.5rem;
             padding: 1% 4%;
             border-radius: 20px;
             background-color: #3c30e6;
             color: #fff2da;
+            transition:all 800ms 200ms;
         }
+    }
+    .startBtn a:hover{
+        background-color: palevioletred;
+        color: #000000af;
+        transform: rotate(360deg);
     }
 }
 
@@ -376,6 +393,13 @@
     width: 100%;
     font-family: "Montserrat Alternates", sans-serif;
     font-weight: 300;
+    display: flex;
+    flex-direction: column;
+
+}
+
+main {
+    flex-grow: 1;
 
 }
 
@@ -389,8 +413,8 @@
     h1 {
         color: #7e0263;
         text-align: center;
-        font-size: 2rem;
-        padding-bottom: 5%;
+        font-size: 1.9rem;
+        margin-bottom: 5%;
 
     }
 
@@ -415,16 +439,22 @@
             background-color: #2222222d;
             backdrop-filter: blur(10px);
             border-radius: 20px;
-            transition: all 400ms
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeInUp 2s ease forwards;
+            transition: all 400ms;
+
         }
 
         .progs:hover {
             box-shadow: 5px 5px 30px #000000b2;
+            transform: translate(10px, -5px);
 
         }
 
         h3 {
             margin: 10% 2%;
+            font-size: 1rem;
         }
 
         button {
@@ -434,14 +464,14 @@
             background-color: #0001521e;
             backdrop-filter: blur(20px);
             border-radius: 20px;
-            border: 1px ridge black;
+            border: none;
             font-weight: 500;
             transition: all 400ms
         }
 
         .btn:hover {
-            transform: scale(1.1) ;
-            background-color: #6d01569d;
+            box-shadow: 5px 5px 50px 5px #70009c9f;
+            background-color: #ad01c493;
             color: white;
             font-size: 0.9rem;
         }
@@ -457,15 +487,79 @@ footer {
     width: 100%;
 
     p {
+        font-size: 0.8rem;
         margin: 5px 0;
         text-transform: capitalize;
     }
 
     #smaller {
-        font-size: 0.9em;
+        font-size: 0.7em;
     }
-    .DietPepsi{
+
+    .DietPepsi {
         color: black;
         font-weight: 500;
+    }
+}
+
+.smallScreen {
+    display: none;
+}
+
+/*ANIMATION*/
+/*big screen animation */
+.bigScreen {
+    overflow: hidden;
+    max-width: 100%;
+    white-space: nowrap;
+    border-right: 3px solid;
+    width: fit-content;
+    line-height: 1.2;
+    animation: typing 8s steps(40) forwards, blink 0.7s step-end infinite;
+}
+
+@keyframes typing {
+    from{
+        width: 0;
+    }
+
+    to{
+        width: 100%;
+    }
+
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+/* small screens animation */
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    60% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+
+    80% {
+        transform: scale(0.95);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/*card animation*/
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
